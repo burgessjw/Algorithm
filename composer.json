@@ -1,0 +1,36 @@
+{
+    "name": "jiawei/algorithm",
+    "description": "jiawei/algorithm",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Algorithm\\":"Algorithm/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "secure-http": false,
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "repositories": [
+        {
+            "packagist.org": false
+        },
+        {
+            "type": "composer",
+            "url": "http://repo.lianhejinxin.com"
+        }
+    ]
+}
