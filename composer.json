@@ -4,11 +4,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Algorithm\\":"Algorithm/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
+            "jiawei\\algorithm\\":"src/"
         }
     },
     "minimum-stability": "stable",

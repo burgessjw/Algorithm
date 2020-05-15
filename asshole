@@ -1,0 +1,44 @@
+<?php
+require(__DIR__ . '/vendor/autoload.php');
+$params = $argv;
+//TODO递归遍历算法类文件
+$files=array();
+$dirList=scandir(__DIR__.'/src');
+if(empty($dirList)){
+	return null;
+}
+foreach($dirList as $file){
+	if($file!='..' && $file!='.'){
+		if(is_dir(__DIR__.'/src'.'/'.$file)){
+			$files[]=scanDir($dirList.'/'.$file);
+		}else{
+			if(preg_match("/\.(php)$/i",$file)){
+				$files[]=basename($file,'.php');
+			}
+		}
+	}
+}
+//列出可执行的算法及其注释
+if (!isset($params[1])) {
+	print_r('可选算法如下:'.PHP_EOL);
+	foreach ($files as $file) {
+		$className='jiawei\algorithm'.'\\'.$file;
+		$class=new ReflectionClass($className);
+		$methods=$class->getMethods();
+		foreach($methods as $method){
+			$methodComment=$class->getMethod($method->name)->getDocComment();
+			print_r($file.'/'.$method->name.PHP_EOL.str_replace('/','',str_replace('*','',preg_replace('/\s+/u','',$methodComment))).PHP_EOL);
+		}
+	}
+	exit(1);
+}
+// var_dump(explode('/',$params[1]));exit();
+$console = explode('/',$params[1]);
+$className = 'jiawei\algorithm'.'\\'.$console[0];
+$obj = new $className();
+$methodName = $console[1];
+try{
+var_dump($obj->$methodName());
+} catch (Throwable $ex) {
+throw $ex;
+}
