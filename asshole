@@ -32,13 +32,10 @@ if (!isset($params[1])) {
 	}
 	exit(1);
 }
-// var_dump(explode('/',$params[1]));exit();
+//通过命令行传入的参数执行指定的方法
 $console = explode('/',$params[1]);
 $className = 'jiawei\algorithm'.'\\'.$console[0];
 $obj = new $className();
 $methodName = $console[1];
-try{
+//TODO怎么把方法的参数提示到命令行？
 var_dump($obj->$methodName());
-} catch (Throwable $ex) {
-throw $ex;
-}

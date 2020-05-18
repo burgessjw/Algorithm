@@ -7,7 +7,7 @@ class BotMove {
 	/**
 	* 判断机器人在完成移动后是否在 (0, 0) 处结束
 	*/
-	public function botMove(array $moves) {
+	public function botMove(array $moves=['u','u','d','l','r','r','u']) {
 		//在二维平面上，有一个机器人从原点 (0, 0) 开始。
 		//给出它的移动顺序，判断这个机器人在完成移动后是否在 (0, 0) 处结束
 		$x = 0;

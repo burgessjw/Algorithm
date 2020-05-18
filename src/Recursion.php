@@ -7,27 +7,43 @@ namespace jiawei\algorithm;
 */
 class Recursion
 {
+	public $pool;
+	public function __construct()
+	{
+		$this->pool=[];
+	}
 	/**
 	* 斐波那契数列的是这样一个数列：1、1、2、3、5、8、13、21、34…，求第 n 项的值是多少。
 	*/
-	public function Fibonacci(int $n)
+	public function Fibonacci(int $n=1000)
+	{
+		$start = microtime();
+		print_r($start.PHP_EOL);
+		$result = $this->fibo($n);
+		$end = microtime();
+		print_r($end.PHP_EOL);
+		print_r('Use Time:'.($end-$start).'s'.PHP_EOL);
+		return $result;
+	}
+	private function fibo($n)
 	{
 		if ($n <= 2) {
 			return 1;
 		}
-		if (!empty($result[$n])) {
-			return $result[$n];
+		//可以对比不使用数组缓存中间结果会消耗多长时间（差距巨大）
+		//return $this->fibo($n-1)+$this->fibo($n-2);
+		if (!empty($this->pool[$n])) {
+			return $this->pool[$n];
 		} else {
-			$result[$n] = $this->Fibonacci($n-1)+$this->Fibonacci($n-2);
-			return $result[$n];
+			$this->pool[$n] = $this->fibo($n-1)+$this->fibo($n-2);
+			return $this->pool[$n];
 		}
 	}
-
 	/**
 	* 小青蛙跳台阶问题。一只青蛙一次可以跳上1级台阶，也可以跳上2级。
 	* 求该青蛙跳上一个n级的台阶总共有多少种跳法
 	*/
-	public function Frog($n)
+	public function Frog($n=10)
 	{
 		if ($n<=2) {
 			return $n;
